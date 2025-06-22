@@ -1,0 +1,30 @@
+<div class="sb2-2-3">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box-inn-sp admin-form">
+        <div class="sb2-2-add-blog sb2-2-1">
+          <h2>Manage Course - {{ data.name }}</h2>
+          <div>
+            <img [src]="data.thumbnail" alt="" style="width: 200px; height: 200px;">
+            <h4>Time:
+              <span class="me-2">{{ data.startDate|date:'yyyy-MM-dd' }}</span>
+              <span class="ms-2">{{ data.endDate|date:'yyyy-MM-dd' }}</span>
+            </h4>
+            <p>
+              {{ data.description }}
+            </p>
+
+          </div>
+          <tabset>
+            <tab heading="Syllabus" id="syllabus" (selectTab)="onTabSelected('syllabus')">
+              <app-course-syllabus [courseId]="courseId"/>
+            </tab>
+            <tab heading="Quiz" id="quiz" (selectTab)="onTabSelected('quiz')">
+              <app-course-quizz [courseId]="courseId" [activeTab]="selectedTab"/>
+            </tab>
+          </tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

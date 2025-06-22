@@ -1,0 +1,105 @@
+<div class="box-inn-sp mt-2">
+  <div class="inn-title">
+    <h4>Quiz Manage</h4>
+  </div>
+  <div class="bor">
+    <form>
+      <div class="row">
+        <div class="col-6 form-group mb-3">
+          <label>Title</label>
+          <input type="text" name="title" class="form-control" placeholder="Enter title" required
+                 [(ngModel)]="param.quiz.title">
+        </div>
+        <div class="col-6 form-group mb-3">
+          <label>Descriptions</label>
+          <textarea class="form-control" rows="1" name="description" placeholder="Enter descriptions"
+                    [(ngModel)]="param.quiz.description"></textarea>
+        </div>
+
+        <div class="col-6 form-group mb-3">
+          <label>Course</label>
+          <ng-select [items]="courses"
+                     bindLabel="name"
+                     bindValue="courseId"
+                     placeholder="Select Course"
+                     [(ngModel)]="selectedCourseId"
+                     (ngModelChange)="getLesson()"
+                     name="course"
+                     required>
+
+          </ng-select>
+        </div>
+
+        <div class="col-6 form-group mb-3">
+          <label>Lesson</label>
+          <ng-select [items]="lessons"
+                     bindLabel="title"
+                     bindValue="lessonId"
+                     placeholder="Select Course"
+                     [(ngModel)]="param.quiz.lessonId"
+                     name="lesson"
+                     required>
+          </ng-select>
+        </div>
+      </div>
+      @for (q of param.questions; track q; let idx = $index) {
+        <hr style="height: 2px; background-color: #000000; border: none;">
+        <div class="row position-relative">
+          <button class="btn btn-outline-danger position-absolute top-0 end-0 rounded-circle"
+                  (click)="remove(idx)"
+                  style="width: 35px; height: 35px;">X
+          </button>
+          <span class="fw-bold fs-3">Question: {{ idx + 1 }}</span>
+          <div class="col-12 form-group mb-3">
+            <label>Content</label>
+            <textarea class="form-control" rows="1" [name]="'content' + idx" placeholder="Enter here"
+                      [(ngModel)]="q.content"></textarea>
+          </div>
+
+          <div class="col-6 form-group mb-3">
+            <label>Option A</label>
+            <input type="text" [name]="'A' + idx" class="form-control" placeholder="Enter here" required
+                   [(ngModel)]="q.optionA">
+          </div>
+          <div class="col-6 form-group mb-3">
+            <label>Option B</label>
+            <input type="text" [name]="'B' + idx" class="form-control" placeholder="Enter here" required
+                   [(ngModel)]="q.optionB">
+          </div>
+          <div class="col-6 form-group mb-3">
+            <label>Option C</label>
+            <input type="text" [name]="'C' + idx" class="form-control" placeholder="Enter here" required
+                   [(ngModel)]="q.optionC">
+          </div>
+          <div class="col-6 form-group mb-3">
+            <label>Option D</label>
+            <input type="text" [name]="'D' + idx" class="form-control" placeholder="Enter here" required
+                   [(ngModel)]="q.optionD">
+          </div>
+
+          <div class="col-2 form-group mb-3">
+            <label>Answer</label>
+            <select class="form-control" [name]="'answer' + idx" required [(ngModel)]="q.answer">
+              <option value="">Select answer</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+            </select>
+          </div>
+        </div>
+      }
+
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="waves-effect waves-light btn-large waves-input-wrapper"
+             style="">
+            <input type="submit" class="waves-button-input" value="Submit" (click)="submit()">
+          </i>
+          <button class="btn btn-primary ms-3" (click)="addQuestion()">Add question</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

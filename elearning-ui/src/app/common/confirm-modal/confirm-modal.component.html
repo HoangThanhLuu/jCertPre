@@ -1,0 +1,11 @@
+<div id="modal-confirmation">
+  <div id="modal-header"><h3><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ title }}</h3>
+    <span
+      data-confirm=0 class="modal-action" id="modal-close" (click)="cancel()"><i class="fa fa-times"
+                                                                                 aria-hidden="true"></i></span></div>
+  <div id="modal-content"><p [innerHTML]="message"></p></div>
+  <div id="modal-buttons">
+    <button class="modal-action" data-confirm=0 id="modal-button-no" (click)="cancel()">No</button>
+    <button class="modal-action" data-confirm=1 id="modal-button-yes" (click)="confirm()">Yes</button>
+  </div>
+</div>

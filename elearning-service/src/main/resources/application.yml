@@ -1,0 +1,52 @@
+server:
+  port: 2121
+  servlet:
+    context-path: /api
+  compression:
+    enabled: true
+    min-response-size: 512
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+
+application:
+  ignored:
+    urls:
+      - /auth/**
+      - /student/**
+      - /actuator/**
+  datasource:
+    read:
+      jdbc-url: "jdbc:mysql://localhost:3306/${MYSQL_READ_DB_NAME:course_app}?useSSL=false&useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true"
+      username: root
+      password: 1234
+      driver-class-name: "com.mysql.cj.jdbc.Driver"
+      maximum-pool-size: 2
+    write:
+      jdbc-url: "jdbc:mysql://localhost:3306/${MYSQL_WRITE_DB_NAME:course_app}?useSSL=false&useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true"
+      username: root
+      password: 1234
+      driver-class-name: "com.mysql.cj.jdbc.Driver"
+      maximum-pool-size: 2
+
+jwt:
+  secret: "${JWT_SECRET:872c871a1ab996919a3e97145ece2418bb837cadbd69387d96cd45eef831f239}"
+  access-ttl: ${JWT_ACCESS_TTL:1D}
+  refresh-ttl: ${JWT_REFRESH_TTL:1D}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: false
+
+logging:
+  file:
+    name: logs/service.log

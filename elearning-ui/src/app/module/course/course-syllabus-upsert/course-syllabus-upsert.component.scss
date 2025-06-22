@@ -1,0 +1,77 @@
+/* Container Preview */
+.preview-container {
+  border: 2px dashed #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+
+/* Grid Layout */
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+  padding-top: 10px;
+}
+
+/* Mỗi file preview */
+.preview-item {
+  position: relative;
+  background: white;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Hình ảnh */
+.preview-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Nút Xóa */
+.remove-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* PDF Preview */
+.pdf-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.pdf-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.pdf-link {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 14px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.pdf-link:hover {
+  text-decoration: underline;
+}

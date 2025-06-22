@@ -1,0 +1,85 @@
+<div class="sb2-2-3">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box-inn-sp">
+        <div class="inn-title">
+          <h4>Syllabus</h4>
+        </div>
+        <div class="tab-inn">
+          <div class="table-responsive table-desi">
+            <table class="table table-hover table-main">
+              <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Media</th>
+                <th>View</th>
+              </tr>
+              </thead>
+              <tbody>
+                @for (s of lessons; track s) {
+                  <tr>
+                    <td>
+                      {{ s.title }}
+                    </td>
+                    <td>
+                      {{ s.description }}
+                    </td>
+                    <td (click)="s.expanded = !s.expanded">
+                      {{s.media.length}}
+                      @if (s.expanded) {
+                        <i class="fa fa-caret-down"></i>
+                      } @else {
+                        <i class="fa fa-caret-right"></i>
+                      }
+
+                    </td>
+                    <td>
+                      <a href="javascript:void(0)" class="ad-st-view" (click)="updateLesson(s)">Update</a>
+                      <a href="javascript:void(0)" class="ad-st-view bg-danger ms-2" (click)="deleteLesson(s.lessonId)">Delete</a>
+                    </td>
+                  </tr>
+                  @if (s.expanded) {
+                    <tr>
+                      <td>
+                        <input type="file" #media accept="image/*,application/pdf" class="d-none" (change)="uploadMedia($event, s)"/>
+                        <button class="btn btn-secondary mb-2" (click)="media.click()">Add media</button>
+                        <table class="table table-bordered table-child">
+                          <thead>
+                          <tr>
+                            <th>Media</th>
+                            <th>Type</th>
+                            <th>#</th>
+                          </tr>
+                          </thead>
+
+                          <tbody>
+                            @for (l of s.media; track l) {
+                              <tr>
+                                <td>
+                                  @if (l.type.startsWith('image')) {
+                                    <img [src]="l.url" alt="" style="max-width: 60px;">
+                                  }
+                                  {{ l.title }}
+                                </td>
+                                <td>{{ l.type }}</td>
+                                <td>
+                                  <a href=""></a>
+                                  <a href="javascript:void(0)" class="ad-st-view" (click)="deleteMedia(l.mediaId)">Delete</a>
+                                </td>
+                              </tr>
+                            }
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

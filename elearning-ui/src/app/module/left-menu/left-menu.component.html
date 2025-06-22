@@ -1,0 +1,24 @@
+<div class="sb2-13 mt-5">
+  <ul class="collapsible" data-collapsible="accordion">
+    @for (m of menus; track m) {
+      <li>
+        <a href="javascript:void(0)" class="collapsible-header"
+           [ngClass]="{'active': m.expanded, 'menu-active': m.active}"
+           (click)="openMenu(m)">
+          <i [class]="m.icon" aria-hidden="true"></i> {{ m.name }}
+        </a>
+        @if (m.children.length > 0) {
+          <div class="collapsible-body left-sub-menu" [ngClass]="{'d-block': m.expanded}">
+            <ul>
+              @for (c of m.children; track c) {
+                <li>
+                  <a href="javascript:void(0)" (click)="openChildMenu(c)">{{ c.name }}</a>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </li>
+    }
+  </ul>
+</div>

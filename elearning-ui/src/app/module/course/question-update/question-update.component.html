@@ -1,0 +1,60 @@
+<div class="box-inn-sp mt-2">
+  <div class="inn-title">
+    <h4>Quiz Update</h4>
+  </div>
+  <div class="bor">
+    <form>
+      <div class="row">
+        <div class="row position-relative">
+          <span class="fw-bold fs-3">Question: {{ q.no }}</span>
+          <div class="col-12 form-group mb-3">
+            <label>Content</label>
+            <textarea class="form-control" rows="1" [name]="'content'" placeholder="Enter here"
+                      [(ngModel)]="q.content"></textarea>
+          </div>
+
+          <div class="col-6 form-group mb-3">
+            <label>Option A</label>
+            <input type="text" [name]="'A'" class="form-control" placeholder="Enter here" required
+                   [(ngModel)]="q.optionA">
+          </div>
+          <div class="col-6 form-group mb-3">
+            <label>Option B</label>
+            <input type="text" [name]="'B'" class="form-control" placeholder="Enter here" required
+                   [(ngModel)]="q.optionB">
+          </div>
+          <div class="col-6 form-group mb-3">
+            <label>Option C</label>
+            <input type="text" [name]="'C'" class="form-control" placeholder="Enter here" required
+                   [(ngModel)]="q.optionC">
+          </div>
+          <div class="col-6 form-group mb-3">
+            <label>Option D</label>
+            <input type="text" [name]="'D'" class="form-control" placeholder="Enter here" required
+                   [(ngModel)]="q.optionD">
+          </div>
+
+          <div class="col-2 form-group mb-3">
+            <label>Answer</label>
+            <select class="form-control" [name]="'answer'" required [(ngModel)]="q.answer">
+              <option value="">Select answer</option>
+              <option value="a">A</option>
+              <option value="b">B</option>
+              <option value="c">C</option>
+              <option value="d">D</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="waves-effect waves-light btn-large waves-input-wrapper"
+             style="">
+            <input type="submit" class="waves-button-input" value="Submit" (click)="submit()">
+          </i>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

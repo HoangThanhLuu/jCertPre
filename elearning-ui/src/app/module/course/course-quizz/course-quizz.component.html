@@ -1,0 +1,114 @@
+<div class="sb2-2-3">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box-inn-sp">
+        <div class="inn-title">
+          <h4>Quiz</h4>
+        </div>
+        <div class="tab-inn">
+          <div class="table-responsive table-desi">
+            <table class="table table-hover table-main">
+              <thead>
+              <tr>
+                <th>Title</th>
+                <th>Number quizzes</th>
+              </tr>
+              </thead>
+              <tbody>
+                @for (s of data; track s) {
+                  <tr>
+                    <td>
+                      {{ s.lessonName }}
+                    </td>
+                    <td (click)="s.expanded = !s.expanded">
+                      {{ s.quizzes.length }}
+                      @if (s.expanded) {
+                        <i class="fa fa-caret-down"></i>
+                      } @else {
+                        <i class="fa fa-caret-right"></i>
+                      }
+                    </td>
+                  </tr>
+                  @if (s.expanded) {
+                    <tr>
+                      <td colspan="99">
+                        <table class="table table-hover table-main table-bordered">
+                          <thead>
+                          <tr>
+                            <th>Quiz Title</th>
+                            <th>Number Question</th>
+                            <th>View</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                            @for (q of s.quizzes; track q) {
+                              <tr>
+                                <td>
+                                  {{ q.title }}
+                                </td>
+                                <td (click)="getListQuestion(q)">
+                                  {{ q.numberOfQuestion }}
+                                  @if (q.expanded) {
+                                    <i class="fa fa-caret-down"></i>
+                                  } @else {
+                                    <i class="fa fa-caret-right"></i>
+                                  }
+                                </td>
+                                <td>
+                                  <a href="javascript:void(0)" class="ad-st-view" (click)="updateQuiz(q)">Update</a>
+                                  <a href="javascript:void(0)" class="ad-st-view bg-danger ms-3" (click)="delete(q)">Delete</a>
+                                </td>
+                              </tr>
+                              @if (q.expanded) {
+                                <tr>
+                                  <td colspan="99">
+                                    <table class="table table-bordered table-child">
+                                      <thead>
+                                      <tr>
+                                        <th>No</th>
+                                        <th>Content</th>
+                                        <th>Option A</th>
+                                        <th>Option B</th>
+                                        <th>Option C</th>
+                                        <th>Option D</th>
+                                        <th>Answer</th>
+                                        <th>#</th>
+                                      </tr>
+                                      </thead>
+
+                                      <tbody>
+                                        @for (qu of q.questions; track qu) {
+                                          <tr>
+                                            <td>{{ qu.no }}</td>
+                                            <td>{{ qu.content }}</td>
+                                            <td>{{ qu.optionA }}</td>
+                                            <td>{{ qu.optionB }}</td>
+                                            <td>{{ qu.optionC }}</td>
+                                            <td>{{ qu.optionD }}</td>
+                                            <td>{{ qu.answer }}</td>
+                                            <td>
+                                              <a href="javascript:void(0)" class="ad-st-view me-2" (click)="updateQuestion(qu, q)">Update</a>
+                                              <a href="javascript:void(0)" class="ad-st-view bg-danger" (click)="deleteQuestion(qu, q)">Delete</a>
+                                            </td>
+                                          </tr>
+                                        }
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              }
+                            }
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

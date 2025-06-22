@@ -1,0 +1,32 @@
+<div class="box-inn-sp mt-2">
+  <div class="inn-title">
+    <h4>Lesson Update</h4>
+  </div>
+  <div class="bor">
+    <form>
+      <div class="row">
+        <div class="col-6 form-group mb-3">
+          <label>Title</label>
+          <input type="text" name="title" class="form-control" placeholder="Enter lesson name"
+                 [(ngModel)]="payload.title">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea class="materialize-textarea" name="description" [(ngModel)]="payload.description"></textarea>
+          <label [ngClass]="{'active': !!payload.description}">Lesson Descriptions:</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="waves-effect waves-light btn-large waves-input-wrapper"
+             style="">
+            <input type="submit" class="waves-button-input" value="Submit" (click)="submit()">
+          </i>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

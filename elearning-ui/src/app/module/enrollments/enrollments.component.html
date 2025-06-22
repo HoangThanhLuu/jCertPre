@@ -1,0 +1,64 @@
+<div class="sb2-2-3">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box-inn-sp">
+        <div class="inn-title">
+          <h4>Enrollments</h4>
+        </div>
+        <div class="tab-inn">
+          <div class="tab-inn d-flex justify-content-start">
+            <strong class="align-content-center">Search:</strong>
+            <input type="text" class="form-control w-50 ms-3 fs-4 text-dark" placeholder="Search by course name, email student"
+                   [(ngModel)]="key" (keyup.enter)="search()" (keyup)="search()">
+            <button type="button" class="btn btn-success ms-3" (click)="getData()">
+              <i class="fa fa-refresh"></i>
+            </button>
+          </div>
+          <div class="table-responsive table-desi">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Course</th>
+                <th>Student</th>
+                <th>Apply date</th>
+                <th>Update date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+              <tbody>
+                @for (s of data.contents; track s) {
+                  <tr>
+                    <td>
+                      <span class="list-img">
+                        <img [src]="s.thumbnail" alt="">
+                      </span>
+                      <span class="list-enq-name">{{ s.courseName }}</span>
+                    </td>
+                    <td>
+                      {{ s.email }}
+                    </td>
+                    <td>{{ s.createdDate }}</td>
+                    <td>{{ s.updatedDate }}</td>
+                    <td><span class="label label-success {{s.status}}">{{ s.status }}</span></td>
+                    <td>
+                      @if (s.status === 'pending') {
+                        <a href="javascript:void(0)" class="ad-st-view approved" (click)="update(s, 'approved')">Approval</a> |
+                        <a href="javascript:void(0)" class="ad-st-view rejected"
+                           (click)="update(s, 'rejected')">Reject</a>
+                      }
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          <div class="d-flex justify-content-center">
+            <pagination [totalItems]="data.totalRecords" [(ngModel)]="data.page"
+                        [itemsPerPage]="data.size" (pageChanged)="pageChanged($event)"></pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="sb2-2-2">
+  <ul>
+    <li>
+      <a href="javascript:void(0)" (click)="direct('admin/home')">
+        <i class="fa fa-home" aria-hidden="true"></i> Home
+      </a>
+    </li>
+    <li class="active-bre">
+      <a href="javascript:void(0)"
+         (click)="direct(shareService.rootScope.breadCrumbUrl)"> {{ shareService.rootScope.breadCrumb }}
+      </a>
+    </li>
+  </ul>
+</div>

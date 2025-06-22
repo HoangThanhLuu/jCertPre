@@ -1,0 +1,55 @@
+<div class="box-inn-sp mt-2">
+  <div class="inn-title">
+    <h4>Lesson Manage</h4>
+  </div>
+  <div class="bor">
+    <form>
+      <div class="row">
+        <div class="col-6 form-group mb-3">
+          <label>Title</label>
+          <input type="text" name="title" class="form-control" placeholder="Enter lesson name"
+                 [(ngModel)]="payload.title">
+        </div>
+        <div class="col-6 form-group mb-3">
+          <label>Course</label>
+          <ng-select [items]="courses"
+                     bindLabel="name"
+                     bindValue="courseId"
+                     placeholder="Select Course"
+                     [(ngModel)]="payload.courseId"
+                     name="course"
+                     required>
+
+          </ng-select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3 mt-3 mt-xl-0">
+          <label class="mb-0">Media</label>
+          <div class="file-field input-field">
+            <div class="btn admin-upload-btn">
+              <span>File</span>
+              <input type="file" multiple accept="image/*,application/pdf,video/*,application/vnd.ms-powerpoint"
+                     name="file"
+                     (change)="fileService.handleMultipleFiles($event)">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" placeholder="Upload course media">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea class="materialize-textarea" name="description" [(ngModel)]="payload.description"></textarea>
+          <label>Lesson Descriptions:</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="btn btn-success col-2 me-2" (click)="submit()" type="button">Submit</button>
+        <button class="btn btn-danger col-2" (click)="clearUpload()" type="button">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>

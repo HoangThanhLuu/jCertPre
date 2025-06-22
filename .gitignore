@@ -1,0 +1,81 @@
+.idea/
+elearning-ui.iml
+logs/
+
+# Compiled output
+/elearning-ui/dist
+/elearning-ui/tmp
+/elearning-ui/out-tsc
+/elearning-ui/bazel-out
+/elearning-ui/# Node
+/elearning-ui/node_modules
+/elearning-ui/npm-debug.log
+/elearning-ui/yarn-error.log
+/elearning-ui/# IDEs and editors
+/elearning-ui/.idea/
+/elearning-ui/.project
+/elearning-ui/.classpath
+/elearning-ui/.c9/
+/elearning-ui/*.launch
+/elearning-ui/.settings/
+/elearning-ui/*.sublime-workspace
+/elearning-ui/*.iml
+/elearning-ui/# Visual Studio Code
+/elearning-ui/.vscode/*
+/elearning-ui/!.vscode/settings.json
+/elearning-ui/!.vscode/tasks.json
+/elearning-ui/!.vscode/launch.json
+/elearning-ui/!.vscode/extensions.json
+/elearning-ui/.history/*
+/elearning-ui/# Miscellaneous
+/elearning-ui/.angular/cache
+/elearning-ui/.sass-cache/
+/elearning-ui/connect.lock
+/elearning-ui/coverage
+/elearning-ui/libpeerconnection.log
+/elearning-ui/testem.log
+/elearning-ui/typings
+/elearning-ui/package-lock.json
+/elearning-ui/.nx
+/elearning-ui/# System files
+/elearning-ui/.DS_Store
+/elearning-ui/Thumbs.db
+
+
+/elearning-service/HELP.md
+/elearning-service/target/
+/elearning-service/!.mvn/wrapper/maven-wrapper.jar
+/elearning-service/!**/src/main/**/target/
+/elearning-service/!**/src/test/**/target/
+/elearning-service/.mvn/
+
+### STS ###
+/elearning-service/.apt_generated
+/elearning-service/.classpath
+/elearning-service/.factorypath
+/elearning-service/.project
+/elearning-service/.settings
+/elearning-service/.springBeans
+/elearning-service/.sts4-cache
+
+### IntelliJ IDEA ###
+/elearning-service/.idea
+/elearning-service/*.iws
+/elearning-service/*.iml
+/elearning-service/*.ipr
+
+### NetBeans ###
+/elearning-service/nbproject/private/
+/elearning-service/nbbuild/
+/elearning-service/dist/
+/elearning-service/nbdist/
+/elearning-service/.nb-gradle/
+/elearning-service/build/
+/elearning-service/!**/src/main/**/build/
+/elearning-service/!**/src/test/**/build/
+
+### VS Code ###
+/elearning-service/.vscode/
+/elearning-service/logs/*.log
+/elearning-service/false
+/elearning-service/logs/*.gz

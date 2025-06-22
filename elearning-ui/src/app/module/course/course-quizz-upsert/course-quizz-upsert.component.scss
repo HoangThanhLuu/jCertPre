@@ -1,0 +1,17 @@
+label {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+.btn-outline-danger {
+  color: #FF3D00;
+  border-color: #FF3D00;
+  background-color: white;
+}
+
+.btn-outline-danger:hover {
+  color: white;
+  background-color: #FF3D00;
+}

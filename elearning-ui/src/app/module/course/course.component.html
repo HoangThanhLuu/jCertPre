@@ -1,0 +1,65 @@
+<div class="sb2-2-3">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box-inn-sp">
+        <div class="inn-title">
+          <h4>Course Details</h4>
+        </div>
+        <div class="tab-inn d-flex justify-content-start">
+          <strong class="align-content-center">Search:</strong>
+          <input type="text" class="form-control w-50 ms-3 fs-4 text-dark" placeholder="Search by name, email"
+                 [(ngModel)]="key" (keyup.enter)="search()" (keyup)="search()">
+          <button type="button" class="btn btn-success ms-3" (click)="getData()">
+            <i class="fa fa-refresh"></i>
+          </button>
+        </div>
+        <div class="tab-inn">
+          <div class="table-responsive table-desi">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Course</th>
+                <th>Name / Level</th>
+                <th>Description</th>
+                <th>Start date</th>
+                <th>End date</th>
+                <th>View</th>
+              </tr>
+              </thead>
+              <tbody>
+                @for (s of courses.contents; track s) {
+                  <tr>
+                    <td><span class="list-img"><img [src]="s.thumbnail" alt=""></span>
+                    </td>
+                    <td>
+                      <a href="javascript:void(0)">
+                        <span class="list-enq-name">{{ s.name }}</span>
+                        <span class="list-enq-city">{{ s.level.name }}</span>
+                      </a>
+                    </td>
+                    <td>{{ s.description }}</td>
+                    <td>{{ s.startDate | date : 'yyyy-MM-dd' }}</td>
+                    <td>{{ s.endDate | date : 'yyyy-MM-dd' }}</td>
+                    <td>
+                      <a href="javascript:void(0)" class="ad-st-view bg-info" (click)="view(s)">View</a> |
+                      <a href="javascript:void(0)" class="ad-st-view" (click)="update(s)">Edit</a> |
+                      <a href="javascript:void(0)" class="ad-st-view bg-danger" (click)="delete(s)">Delete</a>
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td class="text-center" colspan="7">No records found.</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          <div class="d-flex justify-content-center">
+            <pagination [totalItems]="courses.totalRecords" [(ngModel)]="courses.page"
+                        [itemsPerPage]="courses.size" (pageChanged)="pageChanged($event)"></pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
