@@ -14,11 +14,11 @@ import {debounceTime, Subject} from 'rxjs';
     PaginationComponent,
     FormsModule
   ],
-  templateUrl: './enrollments.component.html',
+  templateUrl: './timetable.component.html',
   standalone: true,
-  styleUrl: './enrollments.component.scss'
+  styleUrl: './timetable.component.scss'
 })
-export class EnrollmentsComponent implements OnInit {
+export class TimetableComponent implements OnInit {
   data: PagingData<EnrollmentDTO> = new PagingData<EnrollmentDTO>();
   key: string = '';
   searchSubject = new Subject<string>();

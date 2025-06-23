@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {BsDatepickerDirective, BsDatepickerInputDirective} from 'ngx-bootstrap/datepicker';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TransferFileService} from '../../../shared/service/transfer-file.service';
 import {LessonPayload} from '../../../shared/model/LessonPayload';
@@ -9,12 +8,11 @@ import {ToastrService} from 'ngx-toastr';
 import {PagingData, ResponseData} from '../../../shared/model/response-data.model';
 import {Course} from '../../../shared/model/Course';
 import {NgSelectComponent} from '@ng-select/ng-select';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-course-syllabus-upsert',
   imports: [
-    BsDatepickerDirective,
-    BsDatepickerInputDirective,
     FormsModule,
     ReactiveFormsModule,
     NgSelectComponent
@@ -31,7 +29,8 @@ export class CourseSyllabusUpsertComponent implements OnInit {
   constructor(
     protected fileService: TransferFileService,
     protected http: HttpClient,
-    protected toast: ToastrService
+    protected toast: ToastrService,
+    protected spinner: NgxSpinnerService
   ) {
   }
 
@@ -53,6 +52,7 @@ export class CourseSyllabusUpsertComponent implements OnInit {
       this.toast.error('Title is required');
       return;
     }
+    this.spinner.show().then();
     const formData = new FormData();
     formData.append('data', new Blob([JSON.stringify(this.payload)], {type: 'application/json'}));
     if (this.fileService.files) {
@@ -68,11 +68,15 @@ export class CourseSyllabusUpsertComponent implements OnInit {
     this.http.post<ResponseData<any>>('api/syllabus', formData)
       .subscribe(res => {
         if (res.success) {
+          this.spinner.hide().then();
           this.toast.success('Create success');
+          this.payload = new LessonPayload();
+          this.clearUpload();
         } else {
           this.toast.error(res.message);
         }
       });
+
   }
 }
 

@@ -111,4 +111,15 @@ export class CourseComponent implements OnInit {
       }
     }).then();
   }
+
+  register(item: Course): void {
+    this.http.post<ResponseData<string>>(`api/course/register/${item.courseId}`, {})
+      .subscribe(res => {
+        if (res.success) {
+          this.toast.success('Register success');
+        } else {
+          this.toast.error('Register fail')
+        }
+      })
+  }
 }

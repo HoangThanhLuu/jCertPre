@@ -61,6 +61,35 @@ export class CourseQuizzUpsertComponent implements OnInit {
   }
 
   submit() {
+    if (!this.param.quiz.title
+      || !this.param.quiz.description
+      || this.param.quiz.lessonId !== -1
+    ) {
+      this.toast.error('Please input required field');
+      return;
+    }
+
+    if (this.param.questions.length === 0) {
+      this.toast.error('Please add question');
+      return;
+    }
+    let checkFail = false;
+    this.param.questions.forEach(e => {
+      if (!e.optionA
+        || !e.optionB
+        || !e.optionC
+        || !e.optionD
+        || !e.content
+        || !e.answer
+      ) {
+        checkFail = true;
+      }
+    });
+    if (checkFail) {
+      this.toast.error('Please input all field of question');
+      return;
+    }
+
     this.http.post<ResponseData<string>>('api/quizz', this.param)
       .subscribe(res => {
         if (res.success) {

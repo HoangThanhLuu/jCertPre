@@ -26,7 +26,7 @@
                       {{ s.description }}
                     </td>
                     <td (click)="s.expanded = !s.expanded">
-                      {{s.media.length}}
+                      {{ s.media.length }}
                       @if (s.expanded) {
                         <i class="fa fa-caret-down"></i>
                       } @else {
@@ -42,7 +42,8 @@
                   @if (s.expanded) {
                     <tr>
                       <td>
-                        <input type="file" #media accept="image/*,application/pdf" class="d-none" (change)="uploadMedia($event, s)"/>
+                        <input type="file" #media accept="image/*,application/pdf" class="d-none"
+                               (change)="uploadMedia($event, s)"/>
                         <button class="btn btn-secondary mb-2" (click)="media.click()">Add media</button>
                         <table class="table table-bordered table-child">
                           <thead>
@@ -64,7 +65,7 @@
                                 </td>
                                 <td>{{ l.type }}</td>
                                 <td>
-                                  <a href=""></a>
+                                  <a [href]="l.url" class="ad-st-view me-2 bg-primary" target="_blank">View</a>
                                   <a href="javascript:void(0)" class="ad-st-view" (click)="deleteMedia(l.mediaId)">Delete</a>
                                 </td>
                               </tr>

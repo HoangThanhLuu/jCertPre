@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ShareService} from '../../shared/service/share.service';
-import {EnrollmentsComponent} from '../enrollments/enrollments.component';
+import {TimetableComponent} from '../time-table/timetable.component';
 import {HttpClient} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-home-admin',
   imports: [
-    EnrollmentsComponent,
+    TimetableComponent,
   ],
   templateUrl: './home.component.html',
   standalone: true,

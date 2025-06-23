@@ -41,6 +41,7 @@
                     <td>{{ s.startDate | date : 'yyyy-MM-dd' }}</td>
                     <td>{{ s.endDate | date : 'yyyy-MM-dd' }}</td>
                     <td>
+                      <a href="javascript:void(0)" class="ad-st-view bg-success" (click)="view(s)">Register</a> |
                       <a href="javascript:void(0)" class="ad-st-view bg-info" (click)="view(s)">View</a> |
                       <a href="javascript:void(0)" class="ad-st-view" (click)="update(s)">Edit</a> |
                       <a href="javascript:void(0)" class="ad-st-view bg-danger" (click)="delete(s)">Delete</a>

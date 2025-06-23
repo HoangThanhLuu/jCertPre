@@ -67,6 +67,8 @@ export class CourseQuizzComponent implements OnInit, OnChanges {
       initialState: {
         payload: new QuizPayload(item.quizId, item.title),
       }
+    }).content?.close.subscribe(res => {
+      this.getData();
     })
   }
 
