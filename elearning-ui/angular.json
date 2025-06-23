@@ -57,6 +57,7 @@
               "src/app/shared/css/materialize.css",
               "src/app/shared/css/bootstrap.css",
               "src/app/shared/css/style.css",
+              "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
               "src/app/shared/css/style-mob.css",
               "node_modules/@ng-select/ng-select/themes/default.theme.css"
             ],
@@ -128,5 +129,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "e2737a0d-3017-449f-8f4f-17c052d484df"
   }
 }

@@ -3,11 +3,14 @@ package com.app.elearningservice.controller;
 import com.app.elearningservice.model.MediaLesson;
 import com.app.elearningservice.model.ResponseContainer;
 import com.app.elearningservice.payload.SyllabusPayload;
+import com.app.elearningservice.security.UserPrincipal;
 import com.app.elearningservice.service.SyllabusService;
 import com.app.elearningservice.utils.Base64Utils;
+import com.app.elearningservice.utils.ImageUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,21 +51,13 @@ public class SyllabusController {
 
     @PostMapping("media")
     public Object media(@RequestParam("lessonId") Long lessonId, @RequestParam("file") MultipartFile file) {
-        try {
-            var urlBase64 = file.getContentType().contains("pdf")
-                    ? Base64Utils.encodePdf(file)
-                    : Base64Utils.encodeImage(file);
-//            syllabusService.saveMedia(
-//                    lessonId,
-//                    file.getOriginalFilename(),
-//                    urlBase64,
-//                    file.getContentType(),
-//                    file.getBytes()
-//            );
-            return ResponseContainer.success("Save media success");
-        } catch (IOException e) {
-            return ResponseContainer.error(e.getMessage());
-        }
+        syllabusService.saveMedia(
+                lessonId,
+                file.getOriginalFilename(),
+                ImageUtils.uploadImageToCloudinary(file),
+                file.getContentType()
+        );
+        return ResponseContainer.success("Save media success");
     }
 
 
@@ -73,38 +68,19 @@ public class SyllabusController {
     ) {
         try {
             var medias = new ArrayList<MediaLesson>();
-//            if (CollectionUtils.isNotEmpty(files)) {
-//                var listMedia = files.stream()
-//                                     .map(e -> {
-//                                         var urlBase64 = "";
-//                                         try {
-//                                             urlBase64 = e.getContentType().contains("pdf")
-//                                                     ? Base64Utils.encodePdf(e)
-//                                                     : Base64Utils.encodeImage(e);
-//                                             return new MediaLesson(
-//                                                     0L,
-//                                                     data.getCourseId(),
-//                                                     e.getOriginalFilename(),
-//                                                     urlBase64,
-//                                                     e.getContentType(),
-//                                                     e.getBytes()
-//                                             );
-//                                         } catch (IOException ex) {
-//                                             log.log(Level.WARNING, "Error encode file", ex);
-//                                             return new MediaLesson(
-//                                                     0L,
-//                                                     data.getCourseId(),
-//                                                     e.getOriginalFilename(),
-//                                                     urlBase64,
-//                                                     e.getContentType(),
-//                                                     null
-//                                             );
-//                                         }
-//
-//                                     })
-//                                     .toList();
-//                medias.addAll(listMedia);
-//            }
+            if (CollectionUtils.isNotEmpty(files)) {
+                var listMedia = files.stream()
+                        .map(e -> new MediaLesson(
+                                0L,
+                                data.getCourseId(),
+                                e.getOriginalFilename(),
+                                ImageUtils.uploadImageToCloudinary(e),
+                                e.getContentType(),
+                                null
+                        ))
+                        .toList();
+                medias.addAll(listMedia);
+            }
             syllabusService.save(data, medias);
             return ResponseContainer.success("Save syllabus success");
         } catch (Exception e) {

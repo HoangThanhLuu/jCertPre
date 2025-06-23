@@ -45,8 +45,23 @@ export const routes: Routes = [
       },
       {
         path: 'enrollments',
-        loadComponent: () => import('./module/enrollments/enrollments.component')
-          .then(m => m.EnrollmentsComponent)
+        children: [
+          {
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'full'
+          },
+          {
+            path: 'list',
+            loadComponent: () => import('./module/time-table/timetable.component')
+              .then(m => m.TimetableComponent)
+          },
+          {
+            path: 'register',
+            loadComponent: () => import('./module/register-time-table/register-time-table.component')
+              .then(m => m.RegisterTimeTableComponent)
+          }
+        ]
       }
     ]
   },

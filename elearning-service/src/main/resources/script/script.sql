@@ -26,10 +26,10 @@ create table if not exists `users`
     `address`    text,
     `dob`        date,
     `avatar`     longtext,
-    `role`       enum ('admin', 'student', 'teacher')   default 'student',
+    `role`       enum ('admin', 'student', 'teacher') default 'student',
     `status`     enum ('active', 'inactive', 'block') default 'active',
-    `created_at` timestamp                   default current_timestamp,
-    `updated_at` timestamp                   default current_timestamp on update current_timestamp,
+    `created_at` timestamp                            default current_timestamp,
+    `updated_at` timestamp                            default current_timestamp on update current_timestamp,
     primary key (`user_id`)
     );
 
@@ -44,11 +44,10 @@ create table if not exists `courses`
     `status`             enum ('active', 'inactive') default 'active',
     `start_date`         date,
     `end_date`           date,
-    `number_of_students` int                                    default 0,
-    `created_at`         timestamp                              default current_timestamp,
-    `updated_at`         timestamp                              default current_timestamp on update current_timestamp,
-    primary key (`course_id`),
-    foreign key (`level_id`) references `levels` (`level_id`)
+    `number_of_students` int                         default 0,
+    `created_at`         timestamp                   default current_timestamp,
+    `updated_at`         timestamp                   default current_timestamp on update current_timestamp,
+    primary key (`course_id`)
     );
 
 create table if not exists `lessons`

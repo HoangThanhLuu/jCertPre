@@ -66,7 +66,7 @@ public class CourseService {
         }
     }
 
-    public PagingContainer<Course> findAll(int page, int size, String key) {
+    public PagingContainer<Course> findAll(int page, int size, String key, Long userId) {
         var sql = """
                 select c.course_id,
                        c.name,
@@ -75,13 +75,16 @@ public class CourseService {
                        c.status,
                        c.start_date,
                        c.end_date,
-                       c.number_of_students
-                from courses c
+                       c.number_of_students,
+                       if(tt.status = 'approved', 1, 0) is_join
+               from courses c
+                        left join time_table tt
+                                  on tt.course_id = c.course_id and tt.user_id = :user_id
                 where true
                     and c.status = 'active'
                     and c.name like :key;
                 """;
-        var param = Map.of("key", "%" + key + "%");
+        var param = Map.of("key", "%" + key + "%", "userId", userId);
         var data = writeDb.query(sql, param, (rs, i) -> new Course(rs));
         var sqlCount = """
                 SELECT COUNT(1) FROM courses WHERE status = 'active' and name like :key;

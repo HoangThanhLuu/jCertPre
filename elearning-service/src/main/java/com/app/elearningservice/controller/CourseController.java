@@ -2,9 +2,11 @@ package com.app.elearningservice.controller;
 
 import com.app.elearningservice.model.ResponseContainer;
 import com.app.elearningservice.payload.CoursePayload;
+import com.app.elearningservice.security.UserPrincipal;
 import com.app.elearningservice.service.CourseService;
 import com.app.elearningservice.utils.Base64Utils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,9 +27,10 @@ public class CourseController {
     public Object findAll(
             @RequestParam(value = "page", defaultValue = "1") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size,
-            @RequestParam(value = "key", defaultValue = "") String key
+            @RequestParam(value = "key", defaultValue = "") String key,
+            @AuthenticationPrincipal UserPrincipal userPrincipal
     ) {
-        return ResponseContainer.success(courseService.findAll(page, size, key));
+        return ResponseContainer.success(courseService.findAll(page, size, key, userPrincipal.getUserId()));
     }
 
     @PostMapping

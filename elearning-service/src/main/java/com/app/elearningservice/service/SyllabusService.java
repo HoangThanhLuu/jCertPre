@@ -41,10 +41,10 @@ public class SyllabusService {
     }
 
     @Transactional
-    public void saveMedia(Long lessonId, String title, String url, String type, byte[] urlBlob) {
+    public void saveMedia(Long lessonId, String title, String url, String type) {
         var sql = """
-                insert into media(lesson_id, title, url, type, url_blob)
-                values (:lesson_id, :title, :url, :type, :url_blob);
+                insert into media(lesson_id, title, url, type)
+                values (:lesson_id, :title, :url, :type);
                 """;
         writeDb.update(
                 sql,
@@ -53,7 +53,6 @@ public class SyllabusService {
                         .addValue("title", title)
                         .addValue("url", url)
                         .addValue("type", type)
-                        .addValue("url_blob", urlBlob)
         );
     }
 
@@ -86,8 +85,8 @@ public class SyllabusService {
         );
         var lessonId = keyHolder.getKey().longValue();
         var sqlInsertMedia = """
-                   insert into media(lesson_id, title, url, type, url_blob)
-                values (:lesson_id, :title, :url, :type, :url_blob);
+                   insert into media(lesson_id, title, url, type)
+                values (:lesson_id, :title, :url, :type);
                    """;
         var params = medias.stream()
                            .map(e -> new MapSqlParameterSource()
@@ -95,7 +94,6 @@ public class SyllabusService {
                                    .addValue("title", e.getTitle())
                                    .addValue("url", e.getUrl())
                                    .addValue("type", e.getType())
-                                   .addValue("url_blob", e.getUrlBlob())
                            ).toList();
         writeDb.batchUpdate(sqlInsertMedia, params.toArray(MapSqlParameterSource[]::new));
     }
