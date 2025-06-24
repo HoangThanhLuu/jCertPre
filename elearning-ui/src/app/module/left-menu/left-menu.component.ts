@@ -23,8 +23,8 @@ export class LeftMenuComponent implements OnInit {
         new ChildMenuDTO('Manage Course', '/courses/upsert'),
       ]),
       new MenuDTO('Time table', '/enrollments', false, false, 'fa fa-graduation-cap', [
-        new ChildMenuDTO('Schedule', '/enrollments/list'),
-        new ChildMenuDTO('Register', '/enrollments/register'),
+        new ChildMenuDTO('My Schedule', '/enrollments/list'),
+        new ChildMenuDTO('Schedule Management', '/enrollments/mana'),
       ])
     ]
   }

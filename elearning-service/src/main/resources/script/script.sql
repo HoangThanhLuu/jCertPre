@@ -124,3 +124,5 @@ create table if not exists `time_table`
     foreign key (`user_id`) references `users` (`user_id`),
     foreign key (`course_id`) references `courses` (`course_id`)
     );
+
+alter table courses add column is_register boolean default false;

@@ -27,7 +27,8 @@ public class Course {
     private Date endDate;
     private Integer numberOfStudents;
     private List<Lesson> lessons;
-    private int isJoined;  // 0: pending, 1: approve, 2: other
+    private int isJoined;  // 1: pending, 2: approve, 0: never
+    private boolean isRegister;
 
     public Course(ResultSet rs) throws SQLException {
         this(
@@ -45,7 +46,8 @@ public class Course {
                 rs.getDate("end_date"),
                 rs.getInt("number_of_students"),
                 List.of(),
-                2
+                JDBCUtils.getValueResultSet(rs, Integer.class, 0, "is_join"),
+                JDBCUtils.getValueResultSet(rs, Boolean.class, false, "is_register")
         );
     }
 
@@ -67,7 +69,8 @@ public class Course {
                     .stream()
                     .map(Lesson::from)
                     .toList(),
-                dtos.getFirst().getIsJoin()
+                dtos.getFirst().getIsJoin(),
+                dtos.getFirst().isRegister()
         );
     }
 }

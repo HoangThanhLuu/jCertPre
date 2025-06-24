@@ -113,10 +113,11 @@ export class CourseComponent implements OnInit {
   }
 
   register(item: Course): void {
-    this.http.post<ResponseData<string>>(`api/course/register/${item.courseId}`, {})
+    this.http.get <ResponseData<string>>(`api/course/register/${item.courseId}`)
       .subscribe(res => {
         if (res.success) {
           this.toast.success('Register success');
+          this.getData()
         } else {
           this.toast.error('Register fail')
         }

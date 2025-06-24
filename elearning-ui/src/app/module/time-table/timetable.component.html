@@ -3,12 +3,12 @@
     <div class="col-md-12">
       <div class="box-inn-sp">
         <div class="inn-title">
-          <h4>Enrollments</h4>
+          <h4>My Schedule</h4>
         </div>
         <div class="tab-inn">
           <div class="tab-inn d-flex justify-content-start">
             <strong class="align-content-center">Search:</strong>
-            <input type="text" class="form-control w-50 ms-3 fs-4 text-dark" placeholder="Search by course name, email student"
+            <input type="text" class="form-control w-50 ms-3 fs-4 text-dark" placeholder="Search by course name, course description"
                    [(ngModel)]="key" (keyup.enter)="search()" (keyup)="search()">
             <button type="button" class="btn btn-success ms-3" (click)="getData()">
               <i class="fa fa-refresh"></i>
@@ -19,11 +19,10 @@
               <thead>
               <tr>
                 <th>Course</th>
-                <th>Student</th>
+                <th>Time</th>
                 <th>Apply date</th>
                 <th>Update date</th>
                 <th>Status</th>
-                <th>Action</th>
               </tr>
               </thead>
               <tbody>
@@ -36,18 +35,15 @@
                       <span class="list-enq-name">{{ s.courseName }}</span>
                     </td>
                     <td>
-                      {{ s.email }}
+                      {{ s.time }}
                     </td>
                     <td>{{ s.createdDate }}</td>
                     <td>{{ s.updatedDate }}</td>
                     <td><span class="label label-success {{s.status}}">{{ s.status }}</span></td>
-                    <td>
-                      @if (s.status === 'pending') {
-                        <a href="javascript:void(0)" class="ad-st-view approved" (click)="update(s, 'approved')">Approval</a> |
-                        <a href="javascript:void(0)" class="ad-st-view rejected"
-                           (click)="update(s, 'rejected')">Reject</a>
-                      }
-                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td class="text-center" colspan="99">No records.</td>
                   </tr>
                 }
               </tbody>

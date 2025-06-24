@@ -47,18 +47,6 @@ export class TimetableComponent implements OnInit {
       });
   }
 
-  update(item: EnrollmentDTO, status: string) {
-    this.http.patch<ResponseData<string>>(`api/enrollment/${item.enrollmentId}?status=${status}`, {})
-      .subscribe(res => {
-        if (res.success) {
-          this.toast.success('Update success');
-          this.getData();
-        } else {
-          this.toast.error(res.message);
-        }
-      });
-  }
-
   pageChanged(event: any): void {
     this.data.page = event.page;
     this.getData();

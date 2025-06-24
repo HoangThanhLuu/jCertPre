@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EnrollmentDTO {
-    private Long enrollmentId;
+    private Long timeTableId;
     private Long userId;
     private Long courseId;
     private String status;
-
     private String email;
+    private String time;
     private String courseName;
     private String thumbnail;
     private String createdDate;

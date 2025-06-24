@@ -12,7 +12,8 @@ export class Course {
     public numberOfStudents: number = 0,
     public status: string = '',
     public numberLesson: number = 0,
-    public isJoined: number = 2,
+    public isJoined: number = 0,
+    public register: boolean = false,
     public lessons: LessonDTO[] = []
   ) {
   }

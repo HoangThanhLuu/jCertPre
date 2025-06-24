@@ -18,6 +18,11 @@ import java.io.IOException;
 public class CourseController {
     private final CourseService courseService;
 
+    @GetMapping("register/{courseId}")
+    public Object registerCourse(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable String courseId) {
+        return ResponseContainer.success(courseService.registerCourse(Long.valueOf(courseId), userPrincipal.getUserId()));
+    }
+
     @GetMapping("{courseId}")
     public Object findById(@PathVariable(value = "courseId") Long courseId) {
         return ResponseContainer.success(courseService.findById(courseId));

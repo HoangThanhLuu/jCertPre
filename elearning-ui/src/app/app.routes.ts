@@ -57,9 +57,9 @@ export const routes: Routes = [
               .then(m => m.TimetableComponent)
           },
           {
-            path: 'register',
-            loadComponent: () => import('./module/register-time-table/register-time-table.component')
-              .then(m => m.RegisterTimeTableComponent)
+            path: 'mana',
+            loadComponent: () => import('./module/time-table-mana/time-table-mana.component')
+              .then(m => m.TimeTableManaComponent)
           }
         ]
       }

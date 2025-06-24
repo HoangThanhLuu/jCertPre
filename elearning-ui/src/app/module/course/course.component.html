@@ -41,7 +41,20 @@
                     <td>{{ s.startDate | date : 'yyyy-MM-dd' }}</td>
                     <td>{{ s.endDate | date : 'yyyy-MM-dd' }}</td>
                     <td>
-                      <a href="javascript:void(0)" class="ad-st-view bg-success" (click)="view(s)">Register</a> |
+                      @if (!s.register) {
+                        @if (s.isJoined === 0) {
+                          <a href="javascript:void(0)" class="ad-st-view bg-success"
+                             (click)="register(s)">Register</a> |
+                        } @else if (s.isJoined === 1) {
+                          <a href="javascript:void(0)" class="ad-st-view bg-success">Wait for approved</a> |
+                        } @else {
+                          <a href="javascript:void(0)" class="ad-st-view bg-success">My class</a> |
+                        }
+                      } @else {
+                        @if (s.isJoined === 2) {
+                          <a href="javascript:void(0)" class="ad-st-view bg-success">My class</a> |
+                        }
+                      }
                       <a href="javascript:void(0)" class="ad-st-view bg-info" (click)="view(s)">View</a> |
                       <a href="javascript:void(0)" class="ad-st-view" (click)="update(s)">Edit</a> |
                       <a href="javascript:void(0)" class="ad-st-view bg-danger" (click)="delete(s)">Delete</a>

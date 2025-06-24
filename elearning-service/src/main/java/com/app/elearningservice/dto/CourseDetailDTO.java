@@ -27,4 +27,5 @@ public class CourseDetailDTO {
     private byte[] urlBlob;
 
     private int isJoin;
+    private boolean isRegister;
 }
