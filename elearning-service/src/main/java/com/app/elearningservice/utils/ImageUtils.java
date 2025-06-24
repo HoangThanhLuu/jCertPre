@@ -16,7 +16,7 @@ public class ImageUtils {
     private static final Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
             "cloud_name", "",
             "api_key", "",
-            "api_secret", "bg-En6Yj5cwmBZR-dCtt6-o7VG8"
+            "api_secret", ""
     ));
     public String getBase64FromImageUrl(String url) {
         try {
